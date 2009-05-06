@@ -273,15 +273,16 @@ Autocompleter.Base = Class.create({
           this.update.down().childNodes.length;
         for (var i = 0; i < this.entryCount; i++) {
           var entry = this.getEntry(i);
+          if (entry.id == "primary") this.index = i;
           entry.autocompleteIndex = i;
           this.addObservers(entry);
         }
       } else {
         this.entryCount = 0;
+        this.index = 0;
       }
 
       this.stopIndicator();
-      this.index = 0;
 
       if(this.entryCount==1 && this.options.autoSelect) {
         this.selectEntry();
